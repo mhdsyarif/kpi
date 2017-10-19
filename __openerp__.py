@@ -17,7 +17,7 @@
         'views/kpi_activity.xml',
         'views/kpi_achievement.xml',
     ],
-    'images': [],
+    'images': ['static/description/smartiso.png'],
     'installable': True,
     'auto_install': False
 }
