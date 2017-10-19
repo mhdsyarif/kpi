@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Form -->
+        <record id="activity_form" model="ir.ui.view">
+            <field name="name">activity_form</field>
+            <field name="model">kpi.activity</field>
+
+            <field name="arch" type="xml">
+            <form string="Activity">
+                <sheet>
+                <label for="target" string="Target"></label>
+                <field name="target_id" 
+                    options="{'no_create': True}"
+                    />
+                <label for="title" 
+                    class="oe_edit_only" string="Activity"/>
+                <h1>
+                    <field name="name" string="Activity" placeholder="Created Activity" />
+                </h1>
+                <group>
+                    <group>
+                    <field name="pic" 
+                    options="{'no_create': True}"
+                        />
+                    <field name="due_date" />
+                    </group>
+                    <group>
+                    <field name="budget" />
+                    <field name="status" />
+                    <field name="create_uid" readonly="1"/>
+                    <field name="write_uid" readonly="1"/>
+                    <field name="write_date" readonly="1"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+            </field>
+        </record>
+        <!-- End Form -->
+
+        <!-- List view -->
+        <record id="view_activity" model="ir.ui.view">
+            <field name="name">view_activity</field>
+            <field name="model">kpi.activity</field>
+            
+            <field name="arch" type="xml">
+                <tree string="Activity">
+                    <field name="due_date" />
+                    <field name="target_id" string="Action"/>
+                    <field name="name" string="Activity"/>
+                    <field name="pic" />
+                    <field name="budget" />
+                    <field name="status" />
+                    <field name="create_uid" />
+                </tree>
+            </field>
+        </record>
+        <!-- End List View -->
+
+        <!-- filter -->
+        <record id="view_activity_filter" model="ir.ui.view">
+            <field name="name">view_activity_filter</field>
+            <field name="model">kpi.activity</field>
+            <field name="arch" type="xml">
+                        
+                <search string="Search Activity">
+                <group expan="0" string="Broup by ...">
+
+                    <filter string="Action"
+                        domain="[]"
+                        context="{'group_by': 'target_id'}"
+                        help="" />
+                    <filter string="Activity"
+                        domain="[]"
+                        context="{'group_by': 'name'}"
+                        help="" />
+                    <filter string="PIC"
+                        domain="[]"
+                        context="{'group_by': 'pic'}"
+                        help="" />
+                    <filter string="Budget"
+                        domain="[]"
+                        context="{'group_by': 'budget'}"
+                        help="" />
+                    <filter string="Month"
+                        domain="[]"
+                        context="{'group_by': 'due_date'}"
+                        help="" />
+                    <filter string="Status"
+                        domain="[]"
+                        context="{'group_by': 'status'}"
+                        help="" />
+                    <filter string="Created by"
+                        domain="[]"
+                        context="{'group_by': 'create_uid'}"
+                        help="" />
+                        
+                </group>              
+                </search>
+
+            </field>
+        </record>
+        <!-- End Filter -->
+
+        <!-- End Activity -->
+
+    </data>
+</openerp>

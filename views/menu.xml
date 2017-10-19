@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Target -->
+        <record id="open_mgmtsystem_kpi_list" model="ir.actions.act_window">
+            <field name="name">Target</field>
+            <field name="res_model">kpi.target</field>
+            <field name="view_mode">tree,kanban,form,gantt,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first target
+                </p>
+            </field>
+        </record>
+
+
+        <!-- Action -->
+        <record id="action_mgmtsystem_kpi_list" model="ir.actions.act_window">
+            <field name="name">Action</field>
+            <field name="res_model">kpi.action</field>
+            <field name="view_mode">tree,kanban,form,gantt,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first action
+                </p>
+            </field>
+        </record>
+
+        <!-- Activity -->
+        <record id="activity_mgmtsystem_kpi_list" model="ir.actions.act_window">
+            <field name="name">Activity</field>
+            <field name="res_model">kpi.activity</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first activity
+                </p>
+            </field>
+        </record>
+
+        <!-- Achievements -->
+        <record id="monitor_mgmtsystem_kpi_list" model="ir.actions.act_window">
+            <field name="name">Achievements</field>
+            <field name="res_model">kpi.achievement</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first Achievement
+                </p>
+            </field>
+        </record>
+
+        <!-- Top menu -->
+        <menuitem
+            id="menu_mgmtsystem_main_kpi_0"
+            name="KPI"
+            sequence="0"
+            groups="base.group_user"/>
+
+        <menuitem
+            id="menu_mgmtsystem_main_kpi_1"
+            name="KPI"
+            sequence="10"
+            parent="menu_mgmtsystem_main_kpi_0"
+            groups="base.group_user"/>
+
+        <!-- Target -->
+        <menuitem 
+            id="menu_mgmtsystem_kpi_1_1" 
+            name="Targets"
+            action="open_mgmtsystem_kpi_list" 
+            parent="menu_mgmtsystem_main_kpi_1" 
+            sequence="0"
+            groups="base.group_user"/>
+
+        <!-- Action -->
+        <menuitem 
+            id="menu_mgmtsystem_kpi_1_2" 
+            name="Actions"
+            action="action_mgmtsystem_kpi_list" 
+            parent="menu_mgmtsystem_main_kpi_1" 
+            sequence="0"
+            groups="base.group_user"/>
+
+        <!-- Activities -->
+        <menuitem 
+            id="menu_mgmtsystem_kpi_1_3" 
+            name="Activities"
+            action="activity_mgmtsystem_kpi_list" 
+            parent="menu_mgmtsystem_main_kpi_1" 
+            sequence="0"
+            groups="base.group_user"/>
+        
+        <!-- Achievements -->
+        <menuitem 
+            id="menu_mgmtsystem_kpi_1_4" 
+            name="Achievements"
+            action="monitor_mgmtsystem_kpi_list" 
+            parent="menu_mgmtsystem_main_kpi_1" 
+            sequence="0"
+            groups="base.group_user"/>
+    </data>
+</openerp>

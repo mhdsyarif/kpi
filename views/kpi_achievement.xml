@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>    
+        <!-- List View -->
+        <record id="view_monitor" model="ir.ui.view">
+        <field name="name">monitor_tree</field>
+        <field name="model">kpi.achievement</field>
+        
+        <field name="arch" type="xml">
+            <tree string="Achievement">
+                <field name="date" />
+                <field name="number" string="Achievement Number"/>
+                <field name="target_number" string="Target Number"/>
+                <field name="target_id" />
+                <field name="create_uid" />
+            </tree>
+        </field>
+        </record>
+        <!-- End List View -->
+
+        <!-- filter -->
+        <record id="view_achievement_filter" model="ir.ui.view">
+            <field name="name">view_achievement_filter</field>
+            <field name="model">kpi.achievement</field>
+            <field name="arch" type="xml">
+                    
+            <search string="Search Achievement">
+                <group expan="0" string="Broup by ...">
+
+                <filter string="Target"
+                    domain="[]"
+                    context="{'group_by': 'target_id'}"
+                    help="" />
+                <filter string="Month"
+                    domain="[]"
+                    context="{'group_by': 'date'}"
+                    help="" />
+                <filter string="Created by"
+                    domain="[]"
+                    context="{'group_by': 'create_uid'}"
+                    help="" />
+                    
+                </group>              
+            </search>
+
+            </field>
+        </record>
+        <!-- End Filter -->
+
+        <!-- Form -->
+        <record id="monitor_form" model="ir.ui.view">
+        <field name="name">monitor_form</field>
+        <field name="model">kpi.achievement</field>
+
+        <field name="arch" type="xml">
+            <form string="Action">
+            <sheet>
+                <group>
+                    <group>
+                    <field name="target_id" on_change="on_change_target_id(target_id)"
+                    options="{'no_create': True}" 
+                    context="{'default_target_number': target_number}"/>
+                    <field name="target_number" />
+                    <field name="note" />
+                    </group>
+                    <group>
+                    <field name="number" string="Achievement Number"/>
+                    <field name="date" />
+                    <field name="create_uid" readonly="1"/>
+                    <field name="write_uid" readonly="1"/>
+                    <field name="write_date" readonly="1"/>
+                    </group>
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+        </record>
+        <!-- End Form -->
+
+        <!-- End Achievement -->
+    </data>
+</openerp>

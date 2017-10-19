@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Form Target -->
+    <record id="target_form" model="ir.ui.view">
+      <field name="name">target_form</field>
+      <field name="model">kpi.target</field>
+
+      <field name="arch" type="xml">
+        <form string="Target">
+          <sheet>
+            <label for="name" 
+                class="oe_edit_only" string="Target"/>
+            <h1>
+                <field name="name" string="Target" placeholder="Created Target" />
+            </h1>
+            <group>
+                <group string="Target Number">
+                  <field name="number" string="Input Number" />
+                </group>
+                <group string="Periode">
+                  <field name="start_date" /> 
+                  <field name="end_date" />
+                </group>
+                <group string="Scope">
+                  <field name="department" string="Company / Department" />
+                  <field name="employee_id" />
+                  <label for="note"></label>
+                </group>
+                <group>
+                  <field name="create_uid" readonly="1"/>
+                  <field name="write_uid" readonly="1"/>
+                  <field name="write_date" readonly="1"/>
+                </group>
+            </group>
+            <notebook>
+                <page string="Description" >
+                  <field name="description" />
+                </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    
+    </record>
+    <!-- End Form Target -->
+
+    <!-- List View Target -->
+    <record id="view_target" model="ir.ui.view">
+        <field name="name">target_tree</field>
+        <field name="model">kpi.target</field>
+        
+        <field name="arch" type="xml">
+            <tree string="Target">
+                <field name="number" />
+                <field name="name" string="Target"/>
+                <field name="department" />
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="create_uid" />
+                <field name="write_uid" groups="base.group_no_one"/>
+                <field name="write_date" groups="base.group_no_one"/>
+            </tree>
+        </field>
+    </record>
+    <!-- End List View Target -->
+
+    <!-- filter Target -->
+    <record id="view_target_filter" model="ir.ui.view">
+        <field name="name">view_target_filter</field>
+        <field name="model">kpi.target</field>
+        <field name="arch" type="xml">
+                  
+          <search string="Search Target">
+            <group expan="0" string="Broup by ...">
+
+              <filter string="Target"
+                  domain="[]"
+                  context="{'group_by': 'name'}"
+                  help="" />
+              <filter string="Department"
+                  domain="[]"
+                  context="{'group_by': 'department'}"
+                  help="" />
+              <filter string="Month"
+                  domain="[]"
+                  context="{'group_by': 'start_date'}"
+                  help="" />
+              <filter string="Created by"
+                  domain="[]"
+                  context="{'group_by': 'create_uid'}"
+                  help="" />
+                  
+            </group>              
+          </search>
+
+        </field>
+    </record>
+    <!-- End Filter Target -->
+
+    <!-- Gantt Chart -->
+    <record id="view_target_gantt" model="ir.ui.view">
+      <field name="name">view_target_gantt</field>
+      <field name="model">kpi.target</field>
+      <field name="arch" type="xml">
+        <gantt 
+          date_start="start_date" string="Target" 
+          default_group_by="name">
+        </gantt>
+      </field>
+    </record>
+    <!-- End Gantt Chart -->
+
+    <!-- Graph Chart -->
+    <record id="view_target_graph" model="ir.ui.view">
+      <field name="name">view_target_graph</field>
+      <field name="model">kpi.target</field>
+      <field name="arch" type="xml">
+        <graph string="Target" type="bar">
+          <field name="name" />
+          <field name="department" />
+        </graph>
+      </field>
+    </record>
+    <!-- End Graph Chart -->
+
+  </data>
+</openerp>

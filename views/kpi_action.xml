@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Form Actions -->
+        <record id="action_form" model="ir.ui.view">
+        <field name="name">action_form</field>
+        <field name="model">kpi.action</field>
+
+        <field name="arch" type="xml">
+            <form string="Action">
+            <sheet>
+            <label for="target" string="Target"></label>
+                <field name="target_id" 
+                options="{'no_create': True}"
+                    />
+                <label for="title" 
+                    class="oe_edit_only" string="Title"/>
+                <h1>
+                    <field name="name" string="Action" placeholder="Created Action" />
+                </h1>
+                <group>
+                <group>
+                    <field name="pic_id" 
+                    options="{'no_create': True}"
+                    />
+                    <field name="resources" />
+                </group>
+                <group>
+                    <field name="due_date" />
+                    <field name="budget" />
+                    <field name="create_uid" readonly="1"/>
+                    <field name="write_uid" readonly="1"/>
+                    <field name="write_date" readonly="1"/>
+                </group>
+                </group>
+                <notebook>
+                <page string="Activities" >
+                    <field name="monitor_ids">
+                    <tree>
+                        <field name="due_date"></field>
+                        <field name="pic"></field>
+                        <field name="budget"></field>
+                        <field name="status"></field>
+                        <field name="create_uid" readonly="1"/>
+                    </tree>
+                    </field>
+                </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+        </record>
+        <!-- End Form Actions -->
+
+        <!-- List View Actions -->
+        <record id="view_action" model="ir.ui.view">
+            <field name="name">action_tree</field>
+            <field name="model">kpi.action</field>
+            
+            <field name="arch" type="xml">
+                <tree string="Action">
+                    <field name="target_id" />
+                    <field name="name" string="Action"/>
+                    <field name="due_date" />
+                    <!-- <field name="pic" /> -->
+                    <field name="resources" />
+                    <field name="budget" />
+                    <field name="create_uid" />
+                    <field name="write_uid" groups="base.group_no_one"/>
+                    <field name="write_date" groups="base.group_no_one"/>
+                </tree>
+            </field>
+        </record>
+        <!-- End List View Actions -->
+
+        <!-- filter Action -->
+        <record id="view_target_filter" model="ir.ui.view">
+            <field name="name">view_action_filter</field>
+            <field name="model">kpi.action</field>
+            <field name="arch" type="xml">
+                    
+            <search string="Search Action">
+                <group expan="0" string="Broup by ...">
+
+                <filter string="Target"
+                    domain="[]"
+                    context="{'group_by': 'target_id'}"
+                    help="" />
+                <filter string="Action"
+                    domain="[]"
+                    context="{'group_by': 'name'}"
+                    help="" />
+                <filter string="Budget"
+                    domain="[]"
+                    context="{'group_by': 'budget'}"
+                    help="" />
+                <filter string="Month"
+                    domain="[]"
+                    context="{'group_by': 'due_date'}"
+                    help="" />
+                <filter string="Created by"
+                    domain="[]"
+                    context="{'group_by': 'create_uid'}"
+                    help="" />
+                    
+                </group>              
+            </search>
+
+            </field>
+        </record>
+        <!-- End Filter Action -->
+
+    </data>
+</openerp>
