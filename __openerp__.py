@@ -16,6 +16,8 @@
         'views/kpi_action.xml',
         'views/kpi_activity.xml',
         'views/kpi_achievement.xml',
+		'security/kpi.xml',
+        'security/ir.model.access.csv',
     ],
     'images': ['static/description/smartiso.png'],
     'installable': True,
